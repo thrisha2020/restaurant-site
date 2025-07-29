@@ -1,894 +1,148 @@
-<!doctype>
-<html>
-<hea>>
-    <meta>
-    <meta>
-    <title>Bella Vista - Fine Dining Restaurant</title>
-    <style>
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
-
-        body {
-            font-family: "Mona Sans", MonaSansFallback, -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, Arial, sans-serif;
-            background-color: rgb(13, 17, 23);
-            color: rgb(255, 255, 255);
-            line-height: 1.6;
-        }
-
-        /* Header Styles */
-        header {
-            background-color: rgb(21, 27, 35);
-            border-bottom: 1px solid rgb(33, 38, 45);
-            padding: 16px 0;
-            position: sticky;
-            top: 0;
-            z-index: 100;
-        }
-
-        .header-container {
-            max-width: 1280px;
-            margin: 0 auto;
-            padding: 0 48px;
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
-        }
-
-        .logo {
-            font-size: 24px;
-            font-weight: 700;
-            color: rgb(121, 192, 255);
-        }
-
-        nav {
-            display: flex;
-            gap: 32px;
-        }
-
-        .nav-button {
-            background: none;
-            border: none;
-            color: rgb(255, 255, 255);
-            font-size: 16px;
-            font-weight: 500;
-            cursor: pointer;
-            padding: 8px 0;
-            transition: all 0.2s;
-            border-bottom: 2px solid transparent;
-        }
-
-        .nav-button:hover,
-        .nav-button.active {
-            color: rgb(121, 192, 255);
-            border-bottom-color: rgb(121, 192, 255);
-        }
-
-        .reserve-btn {
-            background-color: rgb(26, 127, 55);
-            color: rgb(255, 255, 255);
-            border: none;
-            border-radius: 6px;
-            padding: 12px 24px;
-            font-size: 16px;
-            font-weight: 600;
-            cursor: pointer;
-            transition: background-color 0.2s;
-        }
-
-        .reserve-btn:hover {
-            background-color: rgb(34, 139, 69);
-        }
-
-        /* Hero Section */
-        .hero {
-            padding: 96px 48px;
-            text-align: center;
-            background-image: url('https://images.pexels.com/photos/8922201/pexels-photo-8922201.jpeg');
-            background-size: cover;
-            background-position: center;
-            background-attachment: fixed;
-            min-height: 100vh;
-            display: flex;
-            align-items: center;
-            position: relative;
-        }
-
-        .hero::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            right: 0;
-            bottom: 0;
-            background-color: rgba(13, 17, 23, 0.6);
-            z-index: 1;
-        }
-
-        .hero-content {
-            max-width: 1280px;
-            margin: 0 auto;
-            position: relative;
-            z-index: 2;
-        }
-
-        .hero h1 {
-            font-size: 64px;
-            font-weight: 700;
-            letter-spacing: -1.92px;
-            margin-bottom: 24px;
-        }
-
-        .hero p {
-            font-size: 18px;
-            line-height: 27px;
-            color: rgb(139, 148, 158);
-            margin-bottom: 48px;
-            max-width: 600px;
-            margin-left: auto;
-            margin-right: auto;
-        }
-
-        .cta-btn {
-            background-color: rgb(121, 192, 255);
-            color: rgb(13, 17, 23);
-            border: none;
-            border-radius: 6px;
-            padding: 16px 32px;
-            font-size: 18px;
-            font-weight: 600;
-            cursor: pointer;
-            transition: background-color 0.2s;
-        }
-
-        .cta-btn:hover {
-            background-color: rgb(101, 172, 235);
-        }
-
-        /* Menu Section */
-        .menu-section {
-            padding: 96px 48px;
-            background-color: rgb(13, 17, 23);
-        }
-
-        .container {
-            max-width: 1280px;
-            margin: 0 auto;
-        }
-
-        .section-title {
-            font-size: 48px;
-            font-weight: 700;
-            text-align: center;
-            margin-bottom: 64px;
-        }
-
-        .menu-tabs {
-            display: flex;
-            justify-content: center;
-            gap: 24px;
-            margin-bottom: 64px;
-            border-bottom: 1px solid rgb(33, 38, 45);
-        }
-
-        .menu-tab {
-            border: 1px solid rgb(72, 79, 88);
-            border-radius: 12px;
-            font-size: 18px;
-            font-weight: 600;
-            padding: 16px 24px;
-            cursor: pointer;
-            text-transform: capitalize;
-            transition: all 0.3s ease;
-            background: transparent;
-            color: rgb(139, 148, 158);
-        }
-
-        .menu-tab.active {
-            background: linear-gradient(135deg, rgb(255, 107, 107), rgb(255, 142, 83));
-            color: white;
-            transform: translateY(-2px);
-            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.3);
-        }
-
-        .menu-tab:hover {
-            transform: translateY(-2px);
-            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.2);
-            border-color: rgb(121, 192, 255);
-        }
-
-        .menu-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
-            gap: 48px;
-        }
-
-        .menu-item {
-            background-color: rgb(21, 27, 35);
-            border-radius: 24px;
-            padding: 32px;
-            border: 1px solid rgb(33, 38, 45);
-        }
-
-        .menu-item-header {
-            display: flex;
-            justify-content: space-between;
-            align-items: flex-start;
-            margin-bottom: 16px;
-        }
-
-        .menu-item h3 {
-            font-size: 24px;
-            font-weight: 600;
-            margin-bottom: 8px;
-        }
-
-        .menu-price {
-            font-size: 20px;
-            font-weight: 700;
-            color: rgb(121, 192, 255);
-        }
-
-        .menu-description {
-            color: rgb(139, 148, 158);
-            line-height: 24px;
-        }
-
-        /* About Section */
-        .about-section {
-            padding: 96px 48px;
-            background-color: rgb(21, 27, 35);
-        }
-
-        .about-grid {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 64px;
-            align-items: center;
-        }
-
-        .about-content h3 {
-            font-size: 32px;
-            font-weight: 600;
-            margin-bottom: 24px;
-            color: rgb(121, 192, 255);
-        }
-
-        .about-content p {
-            font-size: 18px;
-            line-height: 27px;
-            color: rgb(139, 148, 158);
-            margin-bottom: 24px;
-        }
-
-        .stats-grid {
-            display: grid;
-            grid-template-columns: repeat(2, 1fr);
-            gap: 24px;
-        }
-
-        .stat-item {
-            text-align: center;
-            padding: 24px;
-            background-color: rgb(13, 17, 23);
-            border-radius: 12px;
-            border: 1px solid rgb(33, 38, 45);
-        }
-
-        .stat-number {
-            font-size: 32px;
-            font-weight: 700;
-            color: rgb(121, 192, 255);
-            margin-bottom: 8px;
-        }
-
-        .stat-label {
-            color: rgb(139, 148, 158);
-            font-size: 16px;
-        }
-
-        .about-image {
-            position: relative;
-            border-radius: 24px;
-            overflow: hidden;
-            height: 500px;
-            background-image: url('https://images.pexels.com/photos/3184183/pexels-photo-3184183.jpeg');
-            background-size: cover;
-            background-position: center;
-        }
-
-        .chef-info {
-            position: absolute;
-            bottom: 32px;
-            left: 32px;
-            right: 32px;
-            background-color: rgba(13, 17, 23, 0.9);
-            padding: 24px;
-            border-radius: 12px;
-            border: 1px solid rgb(33, 38, 45);
-        }
-
-        .chef-info h4 {
-            font-size: 20px;
-            font-weight: 600;
-            margin-bottom: 8px;
-            color: rgb(121, 192, 255);
-        }
-
-        .chef-info p {
-            color: rgb(139, 148, 158);
-            font-size: 14px;
-        }
-
-        /* Contact Section */
-        .contact-section {
-            padding: 96px 48px;
-            background-color: rgb(13, 17, 23);
-        }
-
-        .contact-grid {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 64px;
-        }
-
-        .contact-info h3 {
-            font-size: 24px;
-            font-weight: 600;
-            margin-bottom: 32px;
-            color: rgb(121, 192, 255);
-        }
-
-        .contact-item {
-            display: flex;
-            align-items: center;
-            gap: 16px;
-            padding: 20px;
-            background-color: rgb(21, 27, 35);
-            border-radius: 12px;
-            border: 1px solid rgb(33, 38, 45);
-            margin-bottom: 24px;
-        }
-
-        .contact-icon {
-            width: 48px;
-            height: 48px;
-            background-color: rgb(121, 192, 255);
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            flex-shrink: 0;
-        }
-
-        .contact-details h4 {
-            font-size: 18px;
-            font-weight: 600;
-            margin-bottom: 4px;
-        }
-
-        .contact-details p {
-            color: rgb(139, 148, 158);
-            font-size: 16px;
-        }
-
-        /* Form Styles */
-        .reservation-form {
-            display: flex;
-            flex-direction: column;
-            gap: 24px;
-        }
-
-        .form-row {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 16px;
-        }
-
-        .form-input {
-            padding: 16px;
-            background-color: rgb(21, 27, 35);
-            border: 1px solid rgb(33, 38, 45);
-            border-radius: 8px;
-            color: rgb(255, 255, 255);
-            font-size: 16px;
-        }
-
-        .form-input:focus {
-            outline: 2px solid rgb(121, 192, 255);
-            outline-offset: 2px;
-            border-color: rgb(121, 192, 255);
-        }
-
-        .form-input::placeholder {
-            color: rgb(139, 148, 158);
-        }
-
-        .form-textarea {
-            padding: 16px;
-            background-color: rgb(21, 27, 35);
-            border: 1px solid rgb(33, 38, 45);
-            border-radius: 8px;
-            color: rgb(255, 255, 255);
-            font-size: 16px;
-            resize: vertical;
-            min-height: 120px;
-        }
-
-        .submit-btn {
-            background-color: rgb(121, 192, 255);
-            color: rgb(13, 17, 23);
-            border: none;
-            border-radius: 8px;
-            padding: 16px 32px;
-            font-size: 18px;
-            font-weight: 600;
-            cursor: pointer;
-            transition: background-color 0.2s;
-        }
-
-        .submit-btn:hover {
-            background-color: rgb(101, 172, 235);
-        }
-
-        /* Footer */
-        footer {
-            background-color: rgb(21, 27, 35);
-            border-top: 1px solid rgb(33, 38, 45);
-            padding: 64px 48px 32px;
-        }
-
-        .footer-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-            gap: 48px;
-            margin-bottom: 48px;
-        }
-
-        .footer-section h3 {
-            font-size: 24px;
-            font-weight: 700;
-            color: rgb(121, 192, 255);
-            margin-bottom: 24px;
-        }
-
-        .footer-section h4 {
-            font-size: 18px;
-            font-weight: 600;
-            margin-bottom: 16px;
-        }
-
-        .footer-section p {
-            color: rgb(139, 148, 158);
-            line-height: 24px;
-            margin-bottom: 8px;
-        }
-
-        .footer-bottom {
-            border-top: 1px solid rgb(33, 38, 45);
-            padding-top: 32px;
-            text-align: center;
-            color: rgb(145, 152, 161);
-        }
-
-        /* Responsive Design */
-        @media (max-width: 991px) {
-            .about-grid,
-            .contact-grid {
-                grid-template-columns: 1fr;
-                gap: 48px;
-            }
-        }
-
-        @media (max-width: 640px) {
-            .hero h1 {
-                font-size: 36px;
-            }
-
-            .section-title {
-                font-size: 36px;
-            }
-
-            .menu-tabs {
-                flex-wrap: wrap;
-                gap: 16px;
-            }
-
-            .menu-grid {
-                grid-template-columns: 1fr;
-                gap: 32px;
-            }
-
-            .form-row {
-                grid-template-columns: 1fr;
-            }
-
-            .stats-grid {
-                grid-template-columns: 1fr;
-            }
-
-            nav {
-                display: none;
-            }
-        }
-
-        .hidden {
-            display: none;
-        }
-    </style>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Bella Vista</title>
+  <style>
+    body {
+      background-color: #121212;
+      color: #ffffff;
+      font-family: 'Segoe UI', sans-serif;
+      margin: 0;
+      padding: 20px;
+    }
+
+    header {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: space-between;
+      align-items: center;
+      padding-bottom: 20px;
+    }
+
+    .logo {
+      font-size: 1.5rem;
+      font-weight: bold;
+    }
+
+    .nav-buttons {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+    }
+
+    button {
+      padding: 10px 15px;
+      background-color: #ffffff;
+      color: #121212;
+      border: none;
+      border-radius: 5px;
+      font-weight: bold;
+      cursor: pointer;
+    }
+
+    button:hover {
+      background-color: #e0e0e0;
+    }
+
+    h1, h2 {
+      margin-top: 30px;
+    }
+
+    .menu-tabs {
+      margin-top: 10px;
+      margin-bottom: 20px;
+      display: flex;
+      gap: 10px;
+      flex-wrap: wrap;
+    }
+
+    .dish {
+      margin-bottom: 25px;
+    }
+
+    .dish-title {
+      font-weight: bold;
+      font-size: 1.1rem;
+      margin-bottom: 5px;
+    }
+
+    .dish-price {
+      font-weight: normal;
+      margin-bottom: 5px;
+    }
+
+    .dish-desc {
+      font-size: 0.95rem;
+    }
+
+    @media (max-width: 600px) {
+      .nav-buttons {
+        flex-direction: column;
+        align-items: flex-start;
+      }
+    }
+  </style>
 </head>
 <body>
-    <!-->
-    <header>
-        <div>
-            <div>Bella Vista</div>
-            <nav>
-                <button>Menu</button>
-                <button>About</button>
-                <button>Contact</button>
-            </nav>
-            <button>Reserve Table</button>
-        </div>
-    </header>
 
-    <!-->
-    <section>
-        <div>
-            <h1>Where Culinary Art Meets Exceptional Dining</h1>
-            <p>Experience the perfect harmony of premium ingredients, masterful techniques, and warm hospitality in an atmosphere designed for unforgettable moments.</p>
-            <button>View Our Menu</button>
-        </div>
-    </section>
+  <header>
+    <div class="logo">Bella Vista</div>
+    <div class="nav-buttons">
+      <button>Menu</button>
+      <button>About</button>
+      <button>Contact</button>
+      <button>Reserve Table</button>
+    </div>
+  </header>
 
-    <!-->
-    <section>
-        <div>
-            <h2>Our Menu</h2>
-            <div>
-                <button>Appetizers</button>
-                <button>Mains</button>
-                <button>Desserts</button>
-                <button>Beverages</button>
-            </div>
-            
-            <!-->
-            <div>
-                <div>
-                    <div>
-                        <h3>Truffle Arancini</h3>
-                        <span>$18</span>
-                    </div>
-                    <p>Crispy risotto balls filled with wild mushrooms and black truffle, served with parmesan cream sauce</p>
-                </div>
-                <div>
-                    <div>
-                        <h>>Seared Scallops</h3>
-                        <span>$24</span>
-                    </div>
-                    <p>Pan-seared diver scallops with cauliflower purée, pancetta crisps, and micro greens</p>
-                </div>
-                <div>
-                    <div>
-                        <h3>Burrata Caprese</h3>
-                        <span>$16</span>
-                    </div>
-                    <p>Fresh burrata cheese with heirloom tomatoes, basil oil, and aged balsamic reduction</p>
-                </div>
-                <div>
-                    <div>
-                        <h3>Tuna Tartare</h3>
-                        <span>$22</span>
-                    </div>
-                    <p>Yellowfin tuna with avocado, cucumber, sesame oil, and crispy wonton chips</p>
-                </div>
-            </div>
+  <h1>Where Culinary Art Meets Exceptional Dining</h1>
+  <p>Experience the perfect harmony of premium ingredients, masterful techniques, and warm hospitality in an atmosphere designed for unforgettable moments.</p>
+  <button>View Our Menu</button>
 
-            <!-->
-            <div>
-                <div>
-                    <div>
-                        <h3>Wagyu Beef Tenderloin</h3>
-                        <span>$65</span>
-                    </div>
-                    <p>8oz premium wagyu with roasted bone marrow, truffle mashed potatoes, and red wine jus</p>
-                </div>
-                <div>
-                    <div>
-                        <h3>Chilean Sea Bass</h3>
-                        <span>$42</span>
-                    </div>
-                    <p>Miso-glazed sea bass with forbidden black rice, bok choy, and ginger-soy reduction</p>
-                </div>
-                <div>
-                    <div>
-                        <h3>Duck Confit</h3>
-                        <span>$38</span>
-                    </div>
-                    <p>Slow-cooked duck leg with cherry gastrique, wild rice pilaf, and seasonal vegetables</p>
-                </div>
-                <div>
-                    <div>
-                        <h3>Lobster Risotto</h3>
-                        <span>$48</span>
-                    </div>
-                    <p>Creamy arborio rice with fresh lobster, saffron, peas, and parmesan cheese</p>
-                </div>
-            </div>
+  <h2>Our Menu</h2>
+  <div class="menu-tabs">
+    <button>Appetizers</button>
+    <button>Mains</button>
+    <button>Desserts</button>
+    <button>Beverages</button>
+  </div>
 
-            <!-->
-            <div>
-                <div>
-                    <div>
-                        <h3>Chocolate Soufflé</h3>
-                        <span>$14</span>
-                    </div>
-                    <p>Warm dark chocolate soufflé with vanilla bean ice cream and raspberry coulis</p>
-                </div>
-                <div>
-                    <div>
-                        <h3>Tiramisu</h3>
-                        <span>$12</span>
-                    </div>
-                    <p>Classic Italian dessert with espresso-soaked ladyfingers and mascarpone cream</p>
-                </div>
-                <div>
-                    <div>
-                        <h3>Crème Brûlée</h3>
-                        <span>$13</span>
-                    </div>
-                    <p>Vanilla custard with caramelized sugar crust and fresh berries</p>
-                </div>
-                <div>
-                    <div>
-                        <h3>Lemon Tart</h3>
-                        <span>$11</span>
-                    </div>
-                    <p>Tangy lemon curd in a buttery pastry shell with meringue and candied lemon zest</p>
-                </div>
-            </div>
+  <div class="dish">
+    <div class="dish-title">Truffle Arancini</div>
+    <div class="dish-price">$18</div>
+    <div class="dish-desc">Crispy risotto balls filled with wild mushrooms and black truffle, served with parmesan cream sauce</div>
+  </div>
 
-            <!-->
-            <div>
-                <div>
-                    <div>
-                        <h>>Signature Cocktail</h3>
-                        <span>$16</span>
-                    </div>
-                    <p>House-infused gin with elderflower, cucumber, and fresh herbs</p>
-                </div>
-                <div>
-                    <div>
-                        <h3>Wine Selection</h3>
-                        <span>$12-85</span>
-                    </div>
-                    <p>Curated selection of premium wines from renowned vineyards worldwide</p>
-                </div>
-                <div>
-                    <div>
-                        <h3>Craft Beer</h3>
-                        <span>$8</span>
-                    </div>
-                    <p>Local brewery selection featuring seasonal and specialty brews</p>
-                </div>
-                <div>
-                    <div>
-                        <h3>Artisan Coffee</h3>
-                        <span>$5</span>
-                    </div>
-                    <p>Single-origin coffee beans roasted to perfection, served with house-made pastries</p>
-                </div>
-            </div>
-        </div>
-    </section>
+  <div class="dish">
+    <div class="dish-title">Seared Scallops</div>
+    <div class="dish-price">$24</div>
+    <div class="dish-desc">Pan-seared diver scallops with cauliflower purée, pancetta crisps, and micro greens</div>
+  </div>
 
-    <!-->
-    <section>
-        <div>
-            <h2>About Bella Vista</h2>
-            <div>
-                <div>
-                    <h3>Our Story</h3>
-                    <p>Founded in 2015, Bella Vista has been a cornerstone of fine dining in the culinary district. Our passion for exceptional cuisine and warm hospitality has earned us recognition as one of the city's premier dining destinations.</p>
-                    <p>Led by Executive Chef Maria Rodriguez, our culinary team crafts each dish with precision and creativity, using only the finest seasonal ingredients sourced from local farms and trusted suppliers worldwide.</p>
-                    <div>
-                        <div>
-                            <div>10+</div>
-                            <div>Years of Excellence</div>
-                        </div>
-                        <div>
-                            <div>50K+</div>
-                            <div>Happy Guests</div>
-                        </div>
-                    </div>
-                </div>
-                <div>
-                    <div>
-                        <h4>Chef Maria Rodriguez</h4>
-                        <p>Michelin-trained chef with 15 years of culinary excellence</p>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
+  <div class="dish">
+    <div class="dish-title">Burrata Caprese</div>
+    <div class="dish-price">$16</div>
+    <div class="dish-desc">Fresh burrata cheese with heirloom tomatoes, basil oil, and aged balsamic reduction</div>
+  </div>
 
-    <!-->
-    <section>
-        <div>
-            <h>>Contact Us</h2>
-            <div>
-                <div>
-                    <h3>Get in Touch</h3>
-                    <div>
-                        <div>
-                            <svg>
-                                <path>
-                            </svg>
-                        </div>
-                        <div>
-                            <h4>Address</h4>
-                            <p>123 Gourmet Street, Culinary District, CD 12345</p>
-                        </div>
-                    </div>
-                    <div>
-                        <div>
-                            <svg>
-                                <path>
-                            </svg>
-                        </div>
-                        <div>
-                            <h4>Phone</h4>
-                            <p>(555) 123-4567</p>
-                        </div>
-                    </div>
-                    <div>
-                        <div>
-                            <svg>
-                                <path>
-                            </svg>
-                        </div>
-                        <div>
-                            <h4>Email</h4>
-                            <p>info@bellavista.com</p>
-                        </div>
-                    </div>
-                </div>
-                <div>
-                    <h>>Make a Reservation</h3>
-                    <form>
-                        <div>
-                            <input>
-                            <input>
-                        </div>
-                        <input>
-                        <div>
-                            <input>
-                            <select>
-                                <option>Select Time</option>
-                                <option>5:00 PM</option>
-                                <option>6:00 PM</option>
-                                <option>7:00 PM</option>
-                                <option>8:00 PM</option>
-                                <option>9:00 PM</option>
-                            </select>
-                        </div>
-                        <select>
-                            <option>Party Size</option>
-                            <option>1 Guest</option>
-                            <option>2 Guests</option>
-                            <option>3 Guests</option>
-                            <option>4 Guests</option>
-                            <option>5 Guests</option>
-                            <option>6+ Guests</option>
-                        </select>
-                        <textarea></textarea>
-                        <button>Make Reservation</button>
-                    </form>
-                </div>
-            </div>
-        </div>
-    </section>
+  <div class="dish">
+    <div class="dish-title">Tuna Tartare</div>
+    <div class="dish-price">$22</div>
+    <div class="dish-desc">Yellowfin tuna with avocado, cucumber, sesame oil, and crispy wonton chips</div>
+  </div>
 
-    <!-->
-    <footer>
-        <div>
-            <div>
-                <div>
-                    <h3>Bella Vista</h3>
-                    <p>Experience fine dining at its finest with our carefully crafted menu and exceptional service.</p>
-                </div>
-                <div>
-                    <h4>Contact</h4>
-                    <p>123 Gourmet Street</p>
-                    <p>Culinary District, CD 12345</p>
-                    <p>Phone: (555) 123-4567</p>
-                    <p>Email: info@bellavista.com</p>
-                </div>
-                <div>
-                    <h4>Hours</h4>
-                    <p>Monday - Thursday: 5:00 PM - 10:00 PM</p>
-                    <p>Friday - Saturday: 5:00 PM - 11:00 PM</p>
-                    <p>Sunday: 4:00 PM - 9:00 PM</p>
-                </div>
-            </div>
-            <div>
-                <p>© 2025 Bella Vista Restaurant. All rights reserved.</p>
-            </div>
-        </div>
-    </footer>
+  <div class="dish">
+    <div class="dish-title">Wagyu Beef Tenderloin</div>
+    <div class="dish-price">$65</div>
+    <div class="dish-desc">3oz premium wagyu with roasted bone marrow, truffle mashed potatoes, and red wine jus</div>
+  </div>
 
-    <script>
-        // Navigation functionality
-        function scrollToSection(sectionId) {
-            const element = document.getElementById(sectionId);
-            if (element) {
-                element.scrollIntoView({
-                    behavior: 'smooth',
-                    block: 'start'
-                });
-            }
-            
-            // Update active nav button
-            const navButtons = document.querySelectorAll('.nav-button');
-            navButtons.forEach(btn => btn.classList.remove('active'));
-            event.target.classList.add('active');
-        }
+  <div class="dish">
+    <div class="dish-title">Chilean Sea Bass</div>
+    <!-- Add price and description if needed -->
+  </div>
 
-        // Menu category switching
-        function showCategory(category, button) {
-            // Hide all menu categories
-            const categories = ['appetizers', 'mains', 'desserts', 'beverages'];
-            categories.forEach(cat => {
-                document.getElementById(cat).classList.add('hidden');
-            });
-            
-            // Show selected category
-            document.getElementById(category).classList.remove('hidden');
-            
-            // Update active tab
-            const tabs = document.querySelectorAll('.menu-tab');
-            tabs.forEach(tab => tab.classList.remove('active'));
-            button.classList.add('active');
-            
-            // Update tab colors based on category
-            const colors = {
-                'appetizers': 'linear-gradient(135deg, rgb(255, 107, 107), rgb(255, 142, 83))',
-                'mains': 'linear-gradient(135deg, rgb(72, 187, 120), rgb(56, 178, 172))',
-                'desserts': 'linear-gradient(135deg, rgb(196, 113, 237), rgb(147, 51, 234))',
-                'beverages': 'linear-gradient(135deg, rgb(59, 130, 246), rgb(37, 99, 235))'
-            };
-            
-            button.style.background = colors[category];
-        }
-
-        // Form submission
-        document.querySelector('.reservation-form').addEventListener('submit', function(e) {
-            e.preventDefault();
-            alert('Thank you for your reservation request! We will contact you shortly to confirm.');
-        });
-
-        // Scroll spy for navigation
-        window.addEventListener('scroll', function() {
-            const sections = ['menu', 'about', 'contact'];
-            const navButtons = document.querySelectorAll('.nav-button');
-            
-            let current = '';
-            sections.forEach(section => {
-                const element = document.getElementById(section);
-                const rect = element.getBoundingClientRect();
-                if (rect.top <=>= 100) {
-                    current = section;
-                }
-            });
-            
-            navButtons.forEach((btn, index) => {
-                btn.classList.remove('active');
-                if (sections[index] === current) {
-                    btn.classList.add('active');
-                }
-            });
-        });
-    </script>
 </body>
 </html>
